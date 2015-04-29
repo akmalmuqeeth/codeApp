@@ -3,6 +3,8 @@ users
 mongod --dbpath /Users/akmalmuqeeth/Documents/meantest/codeApp/database/
 
 db.users.save({"username":"jesse","name":"jesse","password": "jesse", "city":"LA", "profession":"designer" });
+db.users.save({"username":"adam","name":"adam","adam": "jesse", "city":"LA", "profession":"designer" });
+db.users.save({"username":"mike","name":"mike","password": "mike", "city":"LA", "profession":"designer" });
 db.users.save({"username":"gus","name":"gus","password": "gus", "city":"LA", "profession":"programmer" });
 db.users.save({"username":"tuco","name":"tuco","password": "tuco", "city":"DC", "profession":"programmer" });
 db.users.save({"username":"marie","name":"marie","password": "marie", "city":"NY", "profession":"manager" });
@@ -14,6 +16,7 @@ mongoexport --db userDB --collection users --out users.json
 mongoimport --db userDB --collection users --type json --file users.json
 
 
-curl --data "param1=value1&param2=value2" http://127.0.0.1:8080/api/login
-
 curl -H "Content-Type: application/json" -X POST -d '{"username":"jesse","password":"jesse"}' http://127.0.0.1:8080/api/login
+
+curl -i -H "Accept: application/json" "http://127.0.0.1:8080/api/users/DC"
+

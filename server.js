@@ -82,17 +82,15 @@ db.once('open', function callback () {
 // authenticate via user and password
 app.post('/api/login/', function login (req,res) {
   logger.info("attempting to authenticate user", req.body);
-
   passport.authenticate('local', function(err, user, info) {
-        logger.info("in local auth"); 
         if (err)
           return res.status(500).end(); 
         if (!user)
           return res.status(404).send(info);
 
         /* user is authenticated at this point but a cookie is not created,
-           use the login method in the request object to serialize the user 
-           and create the cookie */
+           the login method in the request object serializes the user
+           and creates the cookie */
         req.logIn(user, function(err) {
           if (err) { 
             return res.status(500).end();
@@ -103,13 +101,34 @@ app.post('/api/login/', function login (req,res) {
       })(req, res);
 });
 
+app.get('/api/users/:cityFilter', function getUsers(req,res){
+
+    UserModel.aggregate()
+        .match( { city : req.params.cityFilter} )
+        .group({_id : "$profession",count: { $sum: 1 }})
+        .exec(function (err, response) {
+            if (err) console.log(err);
+            res.json({"message": "success", "data": response,
+                "status_code": "200"});
+        }
+    );
+});
+
+
 /* utility function to strip any sensitive information from the user object
  before passing it over the wire*/
 function safeUserObj(user) {
     return {name: user.name, city : user.city, profession : user.profession};
 }
 
-
+/* middleware to check user is authenticated*/
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    } else {
+        res.status(403).end();
+    }
+}
 
 
 
