@@ -27,22 +27,26 @@ app.use(passport.session());
 /* register a serializeUser function, which tells passport which unique
  information from the user object it should use to create the cookie */
 passport.serializeUser(function(user, done){
-  logger.debug('serializing: ', user.id);
-  done(null, user.id);
+  logger.debug('serializing: ', user.username);
+  done(null, user.username);
 });
 
-passport.deserializeUser(function(id, done){
-  // query database to fetch the user based on id
-  logger.debug('de-serializing: ', id);
-  UserModel.findOne({id: id}, function(err, doc){
+passport.deserializeUser(function(username, done){
+  // query database to fetch the user based on username
+  logger.debug('de-serializing: ', username);
+  UserModel.findOne({username: username}, function(err, doc){
     done(null, doc);
   });
 });
 
 passport.use(new passportLocal.Strategy(function (username, password, done) {
-  logger.info("username: ", username, "password", password);
+  logger.info("username: ", username, " and password is ", password);
   
-  UserModel.findOne({id : username}, function(err, user){
+  UserModel.find({}, function(err,users){
+    logger.info("all users " + users);
+  });
+
+  UserModel.findOne({username : username}, function(err, user){
       logger.debug(err, user);
       if(err) return done(err, null);
       if(!user) return done(null,null, "user not found");
@@ -60,7 +64,7 @@ var db = mongoose.createConnection('mongodb://localhost/userDB');
 
 var userSchema = mongoose.Schema(
     {
-      id : String,
+      username : String,
       name: String,
       password: String,
       city: String,

@@ -2,12 +2,12 @@ userDB
 users
 mongod --dbpath /Users/akmalmuqeeth/Documents/meantest/codeApp/database/
 
-db.users.save({"id":"one",name":"jesse","password": "jesse", "city":"LA", "profession":"designer" });
-db.users.save({"id":"two",name":"gus","password": "gus", "city":"LA", "profession":"programmer" });
-db.users.save({"id":"three",name":"jill","password": "jill", "city":"DC", "profession":"programmer" });
-db.users.save({"id":"four",name":"mary","password": "mary", "city":"NY", "profession":"manager" });
-db.users.save({"id":"five",name":"hank","password": "hank", "city":"IL", "profession":"waiter" });
-db.users.save({"id":"six",name":"walt","password": "walt", "city":"DC", "profession":"manager" });
+db.user.save({"username":"jesse",name":"jesse","password": "jesse", "city":"LA", "profession":"designer" });
+db.user.save({"username":"gus",name":"gus","password": "gus", "city":"LA", "profession":"programmer" });
+db.user.save({"username":"tuco",name":"tuco","password": "tuco", "city":"DC", "profession":"programmer" });
+db.user.save({"username":"marie",name":"marie","password": "marie", "city":"NY", "profession":"manager" });
+db.user.save({"username":"hank",name":"hank","password": "hank", "city":"IL", "profession":"waiter" });
+db.user.save({"username":"walt",name":"walt","password": "walt", "city":"DC", "profession":"manager" });
 
 mongoexport --db userDB --collection users --out users.json
 

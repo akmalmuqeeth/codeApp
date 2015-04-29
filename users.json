@@ -1,3 +1,6 @@
-{ "_id" : { "$oid" : "554064d8263a698fc93620d7" }, "name" : "john", "password" : "john", "city" : "LA", "profession" : "programmer" }
-{ "_id" : { "$oid" : "554064f7263a698fc93620d8" }, "name" : "mary", "password" : "mary", "city" : "DC", "profession" : "designer" }
-{ "_id" : { "$oid" : "55406512263a698fc93620d9" }, "name" : "jack", "password" : "jack", "city" : "LA", "profession" : "designer" }
+{ "_id" : { "$oid" : "55411943535c32309e1fd7bf" }, "username" : "jesse", "name" : "jesse", "password" : "jesse", "city" : "LA", "profession" : "designer" }
+{ "_id" : { "$oid" : "5541194c535c32309e1fd7c0" }, "username" : "gus", "name" : "gus", "password" : "gus", "city" : "LA", "profession" : "programmer" }
+{ "_id" : { "$oid" : "5541194e535c32309e1fd7c1" }, "username" : "tuco", "name" : "tuco", "password" : "tuco", "city" : "DC", "profession" : "programmer" }
+{ "_id" : { "$oid" : "5541195f535c32309e1fd7c2" }, "username" : "marie", "name" : "marie", "password" : "marie", "city" : "NY", "profession" : "manager" }
+{ "_id" : { "$oid" : "55411960535c32309e1fd7c3" }, "username" : "hank", "name" : "hank", "password" : "hank", "city" : "IL", "profession" : "waiter" }
+{ "_id" : { "$oid" : "5541196f535c32309e1fd7c4" }, "username" : "walt", "name" : "walt", "password" : "walt", "city" : "DC", "profession" : "manager" }
