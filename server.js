@@ -90,18 +90,18 @@ app.post('/api/login/', function login (req,res) {
         if (!user)
           return res.status(404).send(info);
 
-          return res.send({user: user});
-        /* user is authenticated at this point but a cookie is not created, 
+        /* user is authenticated at this point but a cookie is not created,
            use the login method in the request object to serialize the user 
            and create the cookie */
-        /*req.logIn(user, function(err) { 
+        req.logIn(user, function(err) {
           if (err) { 
             return res.status(500).end();
           }
-          var emberuser = makeEmberUser(user);
-          logger.debug(emberuser);
-          return res.send({users : [emberuser]});
-        });*/
+          //do NOT send the user object as it is, since it has password, create a safe version of the user object and send it over
+          var safeUserObj = {name: user.name, city : user.city, profession : user.profession};
+          logger.debug(safeUserObj);
+          return res.send({user : safeUserObj});
+        });
       })(req, res);
   
 
