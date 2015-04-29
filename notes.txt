@@ -20,3 +20,23 @@ curl -H "Content-Type: application/json" -X POST -d '{"username":"jesse","passwo
 
 curl -i -H "Accept: application/json" "http://127.0.0.1:8080/api/users/DC"
 
+api versioning
+
+
+-- app.js
+-- routes/
+-- -- v1/
+-- -- -- auth.js
+-- -- -- list.js
+-- -- v2/
+-- -- -- auth.js
+-- -- -- list.js
+
+app.get('/v1/list/:id', v1.list)
+app.all('/v1/auth', v1.auth)
+
+app.get('/v2/list/:id', v2.list)
+app.all('/v2/auth', v2.auth)
+
+a more cleaner way
+    http://j-query.blogspot.ca/2013/01/versioned-apis-with-express.html
