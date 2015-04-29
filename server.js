@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 
+var path = require('path');
+
 // body parser to parse post body to JSON
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -112,6 +114,10 @@ app.get('/api/users/:cityFilter', function getUsers(req,res){
                 "status_code": "200"});
         }
     );
+});
+
+app.get('/api/files/:folderName', function getFiles(req,res){
+    return res.sendFile(path.join(__dirname, '/' + req.params.folderName, 'file1.txt'));
 });
 
 
