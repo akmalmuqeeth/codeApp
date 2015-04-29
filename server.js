@@ -97,16 +97,17 @@ app.post('/api/login/', function login (req,res) {
           if (err) { 
             return res.status(500).end();
           }
-          //do NOT send the user object as it is, since it has password, create a safe version of the user object and send it over
-          var safeUserObj = {name: user.name, city : user.city, profession : user.profession};
-          logger.debug(safeUserObj);
-          return res.send({user : safeUserObj});
+
+          return res.send({user : safeUserObj(user)});
         });
       })(req, res);
-  
-
-  
 });
+
+/* utility function to strip any sensitive information from the user object
+ before passing it over the wire*/
+function safeUserObj(user) {
+    return {name: user.name, city : user.city, profession : user.profession};
+}
 
 
 

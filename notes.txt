@@ -16,4 +16,4 @@ mongoimport --db userDB --collection users --type json --file users.json
 
 curl --data "param1=value1&param2=value2" http://127.0.0.1:8080/api/login
 
-curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://127.0.0.1:8080/api/login
+curl -H "Content-Type: application/json" -X POST -d '{"username":"jesse","password":"jesse"}' http://127.0.0.1:8080/api/login
