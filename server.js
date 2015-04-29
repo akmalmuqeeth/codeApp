@@ -41,10 +41,6 @@ passport.deserializeUser(function(username, done){
 
 passport.use(new passportLocal.Strategy(function (username, password, done) {
   logger.info("username: ", username, " and password is ", password);
-  
-  UserModel.find({}, function(err,users){
-    logger.info("all users " + users);
-  });
 
   UserModel.findOne({username : username}, function(err, user){
       logger.debug(err, user);
@@ -83,7 +79,7 @@ db.once('open', function callback () {
 });
 
 // Route implementations
-// get all users, supports login operation
+// authenticate via user and password
 app.post('/api/login/', function login (req,res) {
   logger.info("attempting to authenticate user", req.body);
 
@@ -94,7 +90,7 @@ app.post('/api/login/', function login (req,res) {
         if (!user)
           return res.status(404).send(info);
 
-          return res.send({done: 'done'});
+          return res.send({user: user});
         /* user is authenticated at this point but a cookie is not created, 
            use the login method in the request object to serialize the user 
            and create the cookie */
